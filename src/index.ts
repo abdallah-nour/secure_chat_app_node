@@ -6,7 +6,7 @@ import WebSockets from "./services/webSocketServer"
 
 debug('ts-express:server');
 
-const port: string | number | boolean = serverHandlers.normalizePort(process.env.PORT || 3000);
+const port: string | number | boolean = serverHandlers.normalizePort(process.env.PORT || 4000);
 
 Server.set('port', port);
 
@@ -19,11 +19,11 @@ server.listen(port);
 
 // server handlers
 server.on(
-    'error',
-    (error) => serverHandlers.onError(error, port));
+  'error',
+  (error) => serverHandlers.onError(error, port));
 server.on(
-    'listening',
-    serverHandlers.onListening.bind(server))
+  'listening',
+  serverHandlers.onListening.bind(server))
 
 // Sockets
 server.on("listening", () => { WebSockets.init(server) })
